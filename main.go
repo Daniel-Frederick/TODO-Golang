@@ -9,7 +9,10 @@ import (
 
 func main() {
 	// Init sqlite
-	// db := initDB()
+  // db := database.InitDB()
+	//defer db.close()
+	
+	database.Test()
 	
 	// os.Args[0] = main.go
 	// os.Args[1] = <task> or <id>
@@ -19,13 +22,15 @@ func main() {
 		return
 	}
 
+	services.AddTodo()
+
 	switch os.Args[1] {
 	case "add":
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify new task!")
 			return
 		}
-		fmt.Println("Added new task: %s", os.Args[3])
+		fmt.Printf("Added new task: %s\n", os.Args[3])
 	case "list":
 		fmt.Println("You entered the list cmd")
 		// TODO: Connect to database to return all tasks

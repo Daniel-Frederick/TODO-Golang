@@ -1,7 +1,9 @@
 package services
 
-import ()
+import (
+	"fmt"
+)
 
-func addTodo() {
-
+func AddTodo() {
+	fmt.Println("addTODO")
 }

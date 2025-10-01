@@ -3,10 +3,13 @@ package main
 import (
 	"fmt"
 	"os"
+	"todo-golang/database"
+	"todo-golang/services"
 )
 
 func main() {
 	// Init sqlite
+	// db := initDB()
 	
 	// os.Args[0] = main.go
 	// os.Args[1] = <task> or <id>

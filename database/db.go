@@ -30,6 +30,3 @@ func InitDB() *sql.DB {
 	return db
 }
 
-func Test() {
-	fmt.Println("TESTING DATABASE")
-}

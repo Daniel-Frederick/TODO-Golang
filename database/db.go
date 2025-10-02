@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 	_ "github.com/mattn/go-sqlite3"
 	_ "embed"
 )
@@ -14,6 +15,15 @@ import (
 var schema string
 
 func InitDB() *sql.DB {
+	// Create db directory
+	dbDir := "data"
+	filepath.Join(dbDir, "todo.db")
+
+	err := os.MkdirAll(dbDir, os.ModePerm)
+	if err != nil {
+		fmt.Println("failed to create new Directory")
+	}
+
 	db, err := sql.Open("sqlite3", "todo.db")
 	if err != nil {
 		fmt.Println("DB connection Failed")

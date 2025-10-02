@@ -3,10 +3,15 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"os"
 	"log"
 	_ "github.com/mattn/go-sqlite3"
+	_ "embed"
 )
+
+// The `//go:embed` is a special comment
+// sending the file schema.sql into the schema var
+//go:embed schema.sql
+var schema string
 
 func InitDB() *sql.DB {
 	db, err := sql.Open("sqlite3", "todo.db")
@@ -15,13 +20,7 @@ func InitDB() *sql.DB {
 		log.Fatal(err)
 	}
 
-	todos, err := os.ReadFile("database/schema.sql")
-	if err != nil {
-		fmt.Println("DB connection Failed")
-		log.Fatal(err)
-	}
-
-	_, err = db.Exec(string(todos))
+	_, err = db.Exec(schema)
 	if err != nil {
 		fmt.Println("DB connection Failed")
 		log.Fatal(err)

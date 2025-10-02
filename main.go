@@ -9,8 +9,8 @@ import (
 
 func main() {
 	// Init sqlite
-  // db := database.InitDB()
-	//defer db.close()
+  db := database.InitDB()
+	defer db.Close()
 	
 	database.Test()
 	

@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"os"
-	"todo-golang/database"
-	"todo-golang/services"
+	"todo-golang/internal/database"
+	"todo-golang/internal/services"
 )
 
 func main() {

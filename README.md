@@ -12,3 +12,8 @@ golang + sqlite
 
 Run project:
 `go run ./cmd/todo <cmd>`
+
+currently works:
+`go run ./cmd/todo add "new task"`
+`go run ./cmd/todo list`
+

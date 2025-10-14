@@ -14,7 +14,6 @@ func main() {
 	
 	// os.Args[0] = main.go
 	// os.Args[1] = <task> or <id>
-	fmt.Println("TODO App started!")
 	if 	len(os.Args) < 2 {
 		fmt.Println("How to use: idk")
 		return
@@ -26,16 +25,13 @@ func main() {
 			fmt.Println("Did not specify new task!")
 			return
 		}
-		fmt.Printf("Added new task: %s\n", os.Args[2])
-
 		services.AddTodo(db, os.Args[2])
+		fmt.Printf("Added new task: %s\n", os.Args[2])
 	case "list":
 		fmt.Println("You entered the list cmd")
-		// TODO: Connect to database to return all tasks
+		services.ShowTodos(db)
 	
 	// TODO: Continue creating extending switch to add more cmds
-
 	}
-
 }
 

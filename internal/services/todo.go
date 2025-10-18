@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	// "todo-golang/internal/models"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -30,7 +31,10 @@ func ShowTodos(db *sql.DB) {
 	}
 	defer rows.Close()
 
+	rowsEmpty := true
+
 	for rows.Next() {
+		rowsEmpty = false
 		// TODO: This can be done better with todo struct, then print array
 		var id int
 		var title string
@@ -43,7 +47,12 @@ func ShowTodos(db *sql.DB) {
 			return
 		}
 
-		fmt.Printf("%d: %s (done: %t)\n", id, title, done)
+		fmt.Printf("\n%d: %s\n    Done: %t\n", id, title, done)
+	}
+
+	if rowsEmpty {
+		fmt.Println("No Tasks!")
+		return
 	}
 }
 

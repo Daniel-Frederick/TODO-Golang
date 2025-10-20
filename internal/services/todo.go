@@ -47,7 +47,7 @@ func ShowTodos(db *sql.DB) {
 			return
 		}
 
-		fmt.Printf("\n%d: %s\n    Done: %t\n", id, title, done)
+		fmt.Printf("\n%d: %s\n   Done: %t\n", id, title, done)
 	}
 
 	if rowsEmpty {

@@ -8,15 +8,6 @@ import (
 	"todo-golang/internal/services"
 )
 
-type Cmd string
-const (
-	Add Cmd = "add"
-	List Cmd = "list"
-	Done Cmd = "done"
-	Deletes Cmd = "delete"
-	Update Cmd = "update"
-)
-
 func main() {
 	// Init sqlite
   db := database.InitDB()
@@ -33,30 +24,30 @@ func main() {
 	// TODO: don't use strings, make variables (objects or enums)
 	cmd := Cmd(strings.ToLower(os.Args[1]))
 	switch cmd {
-	case Add:
-		// TODO: 
+	case CmdAdd:
+		// TODO: Make sure to fix the strings in this file
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify new task!")
 			return
 		}
 		services.AddTodo(db, os.Args[2])
 		fmt.Printf("Added new task: %s\n", os.Args[2])
-	case List:
+	case CmdList:
 		fmt.Println("You entered the list cmd")
 		services.ShowTodos(db)
-	case Update:
+	case CmdUpdate:
 		fmt.Println("update cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
-	case Deletes:
+	case CmdDelete:
 		fmt.Println("delete cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
-	case Done:
+	case CmdDone:
 		fmt.Println("done cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
@@ -64,8 +55,6 @@ func main() {
 		}
 	default:
 		fmt.Println("Not right: default hit!")
-	
-	// TODO: Continue creating extending switch to add more cmds
 	}
 }
 

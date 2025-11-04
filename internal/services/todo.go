@@ -56,3 +56,17 @@ func ShowTodos(db *sql.DB) {
 	}
 }
 
+func IsDoneTodo(db *sql.DB, done string) {
+	// done will be boolean
+	fmt.Println(done)
+}
+
+func DeleteTodo(db *sql.DB, id string) {
+	// id will be int
+	fmt.Println(id)
+}
+
+func UpdateTitleTodo(db *sql.DB, title string) {
+	fmt.Println(title)
+}
+

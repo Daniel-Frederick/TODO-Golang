@@ -30,31 +30,43 @@ func main() {
 			fmt.Println("Did not specify new task!")
 			return
 		}
+
 		services.AddTodo(db, os.Args[2])
 		fmt.Printf("Added new task: %s\n", os.Args[2])
+
 	case CmdList:
 		fmt.Println("You entered the list cmd")
 		services.ShowTodos(db)
+
 	case CmdUpdate:
 		fmt.Println("update cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
+		// TODO: Implement
+		services.UpdateTitleTodo(db, os.Args[2])
+
 	case CmdDelete:
 		fmt.Println("delete cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
+		// TODO: Implement
+		services.DeleteTodo(db, os.Args[2])
+		
 	case CmdDone:
 		fmt.Println("done cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
+		// TODO: Implement
+		services.IsDoneTodo(db, os.Args[2])
+		
 	default:
-		fmt.Println("Not right: default hit!")
+		fmt.Println("Unknown command:", cmd)
 	}
 }
 

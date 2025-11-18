@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	// "todo-golang/internal/models"
+	"todo-golang/internal/models"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -36,18 +36,20 @@ func ShowTodos(db *sql.DB) {
 	for rows.Next() {
 		rowsEmpty = false
 		// TODO: This can be done better with todo struct, then print array
-		var id int
-		var title string
-		var done bool
+		// var id int
+		// var title string
+		// var done bool
 
-		err := rows.Scan(&id, &title, &done)
+		var todo models.Todo
+
+		err := rows.Scan(&todo.Id, &todo.Title, &todo.Done)
 		if err != nil {
 		  fmt.Println("Failed to Executate: Could not obtain scan data correctly")
 			log.Fatal(err)
 			return
 		}
 
-		fmt.Printf("\n%d: %s\n   Done: %t\n", id, title, done)
+		fmt.Printf("\n%d: %s\n   Done: %t\n", todo.Id, todo.Title, todo.Done)
 	}
 
 	if rowsEmpty {
@@ -66,7 +68,7 @@ func DeleteTodo(db *sql.DB, id string) {
 	fmt.Println(id)
 }
 
-func UpdateTitleTodo(db *sql.DB, title string) {
-	fmt.Println(title)
+func UpdateTitleTodo(db *sql.DB, id int, title string) {
+	fmt.Println("title: ", title, "\nid: ", id)
 }
 

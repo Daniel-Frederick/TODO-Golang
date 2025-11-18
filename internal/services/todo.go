@@ -35,11 +35,6 @@ func ShowTodos(db *sql.DB) {
 
 	for rows.Next() {
 		rowsEmpty = false
-		// TODO: This can be done better with todo struct, then print array
-		// var id int
-		// var title string
-		// var done bool
-
 		var todo models.Todo
 
 		err := rows.Scan(&todo.Id, &todo.Title, &todo.Done)
@@ -59,12 +54,11 @@ func ShowTodos(db *sql.DB) {
 }
 
 func IsDoneTodo(db *sql.DB, done string) {
-	// done will be boolean
+	// FIX: Pass Done as a boolean
 	fmt.Println(done)
 }
 
 func DeleteTodo(db *sql.DB, id string) {
-	// id will be int
 	fmt.Println(id)
 }
 

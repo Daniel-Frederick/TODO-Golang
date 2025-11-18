@@ -44,12 +44,13 @@ func main() {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
-		// TODO: Implement
 		id, err := strconv.Atoi(os.Args[2])
 		if err != nil {
 			fmt.Println("Error: second argument must be a number", err)
 			return
 		}
+
+		// TODO: Implement
 		services.UpdateTitleTodo(db, id, os.Args[3])
 
 	case CmdDelete:
@@ -58,8 +59,14 @@ func main() {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
+		id, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+			fmt.Println("Error: second argument must be a number", err)
+			return
+		}
+
 		// TODO: Implement
-		services.DeleteTodo(db, os.Args[2])
+		services.DeleteTodo(db, id)
 		
 	case CmdDone:
 		fmt.Println("done cmd")

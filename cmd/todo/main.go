@@ -22,7 +22,6 @@ func main() {
 		return
 	}
 
-	// TODO: don't use strings, make variables (objects or enums)
 	cmd := Cmd(strings.ToLower(os.Args[1]))
 	switch cmd {
 	case CmdAdd:
@@ -36,7 +35,6 @@ func main() {
 		fmt.Printf("Added new task: %s\n", os.Args[2])
 
 	case CmdList:
-		fmt.Println("You entered the list cmd")
 		services.ShowTodos(db)
 
 	case CmdUpdate:
@@ -59,14 +57,14 @@ func main() {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
-		id, err := strconv.Atoi(os.Args[2])
-		if err != nil {
-			fmt.Println("Error: second argument must be a number", err)
-			return
-		}
-
-		// TODO: Implement
-		services.DeleteTodo(db, id)
+		// id, err := strconv.Atoi(os.Args[2])
+		// if err != nil {
+		// 	fmt.Println("Error: second argument must be a number", err)
+		// 	return
+		// }
+		//
+		// // TODO: Implement
+		// services.DeleteTodo(db, id)
 		
 	case CmdDone:
 		fmt.Println("done cmd")

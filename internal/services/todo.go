@@ -56,6 +56,19 @@ func ShowTodos(db *sql.DB) {
 func IsDoneTodo(db *sql.DB, done string) {
 	// FIX: Pass Done as a boolean
 	fmt.Println(done)
+
+	// Query for the specific row with id, not all rows
+	showTodos := "select * from todos;"
+	rows, err := db.Query(showTodos)
+	if err != nil {
+	  fmt.Println("Failed to Executate: Could not obtain scan data correctly")
+		log.Fatal(err)
+		return
+	}
+
+	_, err := db.Exec(insertSQL, todo.Id, !todo.Done)
+
+	fmt.Printf("\n%d: %s\n   Done: %t\n", todo.Id, todo.Title, todo.Done)
 }
 
 func DeleteTodo(db *sql.DB, id string) {
@@ -67,10 +80,10 @@ func UpdateTitleTodo(db *sql.DB, id int, title string) {
 }
 
 func HelpTodo() {
-	fmt.Println("available CMDs: go run ./cmd/todo")
-	fmt.Println("help")
-	fmt.Println("list")
-	fmt.Println("add <task>")
-	fmt.Println("update <id> <new task>")
+	fmt.Println("Available CMDs: go run ./cmd/todo")
+	fmt.Println("  help")
+	fmt.Println("  list")
+	fmt.Println("  add <task>")
+	fmt.Println("  update <id> <new task>")
 }
 

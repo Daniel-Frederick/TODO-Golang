@@ -35,6 +35,11 @@ func main() {
 		fmt.Printf("Added new task: %s\n", os.Args[2])
 
 	case CmdList:
+		if len(os.Args) > 2 {
+			fmt.Println("Too many arguments!")
+			return
+		}
+
 		services.ShowTodos(db)
 
 	case CmdUpdate:
@@ -74,6 +79,14 @@ func main() {
 		}
 		// TODO: Implement
 		services.IsDoneTodo(db, os.Args[2])
+	
+	case CmdHelp:
+		if len(os.Args) > 2 {
+			fmt.Println("Too many arguments!")
+			return
+		}
+
+		services.HelpTodo()
 		
 	default:
 		fmt.Println("Unknown command:", cmd)

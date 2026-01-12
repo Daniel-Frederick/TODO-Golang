@@ -66,3 +66,11 @@ func UpdateTitleTodo(db *sql.DB, id int, title string) {
 	fmt.Println("title: ", title, "\nid: ", id)
 }
 
+func HelpTodo() {
+	fmt.Println("available CMDs: go run ./cmd/todo")
+	fmt.Println("help")
+	fmt.Println("list")
+	fmt.Println("add <task>")
+	fmt.Println("update <id> <new task>")
+}
+

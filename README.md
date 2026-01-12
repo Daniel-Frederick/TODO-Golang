@@ -15,6 +15,8 @@ Run project:
 `go run ./cmd/todo <cmd>`
 
 Currently works:
-`go run ./cmd/todo add "new task"`
 `go run ./cmd/todo list`
+`go run ./cmd/todo help`
+`go run ./cmd/todo add "new task"`
+`go run ./cmd/todo update 1 "update new task"`
 

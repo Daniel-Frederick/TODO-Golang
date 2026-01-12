@@ -8,5 +8,6 @@ const (
 	CmdDone Cmd = "done"
 	CmdDelete Cmd = "delete"
 	CmdUpdate Cmd = "update"
+	CmdHelp Cmd = "help"
 )
 

@@ -58,8 +58,8 @@ func IsDoneTodo(db *sql.DB, done string) {
 	fmt.Println(done)
 
 	// Query for the specific row with id, not all rows
-	showTodos := "select * from todos;"
-	rows, err := db.Query(showTodos)
+	showTodos := "select id, done from todos where id = ?;"
+	todo, err := db.Query(showTodos, todo.Id)
 	if err != nil {
 	  fmt.Println("Failed to Executate: Could not obtain scan data correctly")
 		log.Fatal(err)
@@ -68,7 +68,7 @@ func IsDoneTodo(db *sql.DB, done string) {
 
 	_, err := db.Exec(insertSQL, todo.Id, !todo.Done)
 
-	fmt.Printf("\n%d: %s\n   Done: %t\n", todo.Id, todo.Title, todo.Done)
+	fmt.Printf("\n%d: Done: %t\n", todo.Id, todo.Done)
 }
 
 func DeleteTodo(db *sql.DB, id string) {

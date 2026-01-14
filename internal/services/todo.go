@@ -53,20 +53,20 @@ func ShowTodos(db *sql.DB) {
 	}
 }
 
-func IsDoneTodo(db *sql.DB, done string) {
-	// FIX: Pass Done as a boolean
-	fmt.Println(done)
+func IsDoneTodo(db *sql.DB, id int) {
+	fmt.Println("id: ", id)
 
 	// Query for the specific row with id, not all rows
 	showTodos := "select id, done from todos where id = ?;"
-	todo, err := db.Query(showTodos, todo.Id)
+	todo, err := db.Query(showTodos, id)
 	if err != nil {
 	  fmt.Println("Failed to Executate: Could not obtain scan data correctly")
 		log.Fatal(err)
 		return
 	}
 
-	_, err := db.Exec(insertSQL, todo.Id, !todo.Done)
+	updateDoneSQL := "update todos set done = ? where id = ?"
+	_, err := db.Exec(updateDoneSQL, !todo.Done, todo.Id)
 
 	fmt.Printf("\n%d: Done: %t\n", todo.Id, todo.Done)
 }

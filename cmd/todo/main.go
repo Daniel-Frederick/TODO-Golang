@@ -72,13 +72,18 @@ func main() {
 		// services.DeleteTodo(db, id)
 		
 	case CmdDone:
-		fmt.Println("done cmd")
 		if len(os.Args) < 3 {
 			fmt.Println("Did not specify task ID!")
 			return
 		}
-		// TODO: Implement
-		services.IsDoneTodo(db, os.Args[2])
+
+		id, err := strconv.Atoi(os.Args[2])
+		if err != nil {
+			fmt.Println("Error: second argument must be a number", err)
+			return
+		}
+
+		services.IsDoneTodo(db, id)
 	
 	case CmdHelp:
 		if len(os.Args) > 2 {
